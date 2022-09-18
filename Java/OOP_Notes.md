@@ -500,3 +500,51 @@ System.out.println(c); // .toString()은 생략가능
 - 클래스 파일(*.class)의 위치를 알려주는 경로(path)
 - 환경변수  classpath로 관리하며, 경로간의 구분자는 ';'(세미콜론)를 사용 
 - classpath(환경변수)에 패키지의 루트를 등록해줘야 함.
+
+# 7-15 import문
+- 클래스를 사용할 때 패키지 이름을 생략할 수 있다.
+- 컴파일러에게 클래스가 속한 패키지를 알려준다.
+- import가 필요한 클래스를 사용 시 `ctrl + shift + o(알파벳)`를 누르면 자동으로 import문이 생성된다.
+- java.lang패키지(핵심클래스들)의 클래스는 import하지 않고도 사용할 수 있다. (기본 패키지는 import문 생략 가능)
+```java
+String, Object, System, Thread...
+import java.lang.*;  // *은 패키지의 모든 클래스를 의미
+```
+- 다른 패키지의 클래스를 쓸려면 그 클래스의 패키지를 import 해야 한다.
+- import문을 선언하는 방법은 다음과 같다.
+- import 패키지명.클래스명; // ctrl + shift + o 누르면 자동으로 생성됨.
+또는
+- import 패키지명.*;  // 패키지 내 모든클래스는 패키지 이름을 생략 가능.
+- import문은 패키지문과 클래스선언의 사이에 선언한다.
+- import문은 컴파일 시에 처리되므로 프로그램의 성능에 영향없음
+- 첫 번째 방법이 더 명확한 정보를 제공하긴 하지만 두 방법은 사실 차이가 거의 없으므로 편한대로 사용 가능
+```java
+// 첫 번째 방법
+import java.util.Calendar;
+import java.util.Date;
+
+// 두 번째 방법
+import java.util.*; //java.util 패키지의 모든 클래스
+```
+- 다음의 두 코드는 서로 의미가 다르다.
+```java
+import java.util.*;  <- java.util 패키지의 모든 클래스
+import java.*;  <- java 패키지의 모든 클래스 (java라는 이름의 패키지의 모든 클래스라는 의미라서 패키지는 포함이 안된다.)
+```
+- 이름이 같은 클래스가 속한 두 패키지를 import할 때는 클래스 앞에 패키지명을 붙여줘야 한다. ( java.util.Date <- Date라는 클래스 앞에 java.util이라는 패키지명을 붙임 )
+
+# 7-16 static import문
+- static멤버를 사용할 때 클래스 이름을 생략할 수 있게 해준다.
+- 그래도 클래스 이름이 있으면 명확히 알아보기 좋으니까 웬만하면 사용하지 말고 꼭 필요할 때만 사용하기
+```java
+import static java.lang.System.out;
+import static java.lang.Math.*; // Math 클래스의 모든 static 멤버
+// System.out.println(Math.random());
+out.println(random());  // System이랑 Math 생략 가능
+```
+
+# 7-17 제어자(modifier)
+- 클래스와 클래스의 멤버(멤버 변수, 메서드)에 부가적인 의미 부여
+- 제어자는 접근제어자와 그 외(static, final, abstract..)로 분류된다.
+- 하나의 대상에 여러 제어자를 같이 사용가능(접근 제어자는 4개 중 1개만)
+ - 이때 순서는 상관없지만 관례적으로 접근 제어자를 맨 앞에 쓴다.
